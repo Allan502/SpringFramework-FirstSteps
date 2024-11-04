@@ -17,12 +17,14 @@ public class CustomerController {
             new Customer(4, "Pedro", "pp", "1234")
     ));
 
-    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
+//    @GetMapping
     public List<Customer> getCustomers(){
         return customers;
     }
 
-    @GetMapping("/{name}")
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+//    @GetMapping("/{name}")
     public Customer getCustomer(@PathVariable String name){
         for(Customer customer: customers){
             if (customer.getName().equalsIgnoreCase(name)){
@@ -32,13 +34,15 @@ public class CustomerController {
         return null;
     }
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
+//    @PostMapping
     public Customer postCustormer(@RequestBody Customer customer){
         customers.add(customer);
         return  customer;
     }
 
-    @PutMapping
+    @RequestMapping(method = RequestMethod.PUT)
+//    @PutMapping
     public Customer putCustomer(@RequestBody Customer customer){
         for (Customer c: customers){
             if (c.getId() == customer.getId()){
@@ -52,7 +56,9 @@ public class CustomerController {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//    @DeleteMapping("/{id}")
     public Customer deleteCustomer(@PathVariable int id){
 //        for(int i=0; i < customers.size(); i++){
 //            if (customers.get(i).getId() == id){
@@ -68,7 +74,8 @@ public class CustomerController {
         return null;
     }
 
-    @PatchMapping
+    @RequestMapping(method = RequestMethod.PATCH)
+//    @PatchMapping
     public Customer patchCustomer(@RequestBody Customer customer){
         for (Customer c: customers){
             if (c.getId() == customer.getId()){
