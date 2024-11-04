@@ -50,4 +50,39 @@ public class CustomerController {
         }
         return null;
     }
+
+    @DeleteMapping("/customers/{id}")
+    public Customer deleteCustomer(@PathVariable int id){
+//        for(int i=0; i < customers.size(); i++){
+//            if (customers.get(i).getId() == id){
+//                customers.remove(i);
+//            }
+//        }
+        for (Customer c: customers){
+            if (c.getId() == id ){
+                customers.remove(c);
+                return c;
+            }
+        }
+        return null;
+    }
+
+    @PatchMapping("/customers")
+    public Customer patchCustomer(@RequestBody Customer customer){
+        for (Customer c: customers){
+            if (c.getId() == customer.getId()){
+                if(customer.getName() != null){
+                    c.setName(customer.getName());
+                }
+                if (customer.getUsername() != null){
+                    c.setUsername(customer.getUsername());
+                }
+                if (customer.getPassword() != null){
+                    c.setPassword(customer.getPassword());
+                }
+                return c;
+            }
+        }
+        return null;
+    }
 }
