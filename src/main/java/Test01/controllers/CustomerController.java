@@ -4,7 +4,9 @@ import Test01.domain.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +21,10 @@ public class CustomerController {
             new Customer(4, "Pedro", "pp", "1234")
     ));
 
-//    @RequestMapping(method = RequestMethod.GET)
+    public CustomerController() {
+    }
+
+    //    @RequestMapping(method = RequestMethod.GET)
     @GetMapping
     public ResponseEntity<List<Customer>> getCustomers(){
         return ResponseEntity.ok(customers);
@@ -40,7 +45,15 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<?> postCustormer(@RequestBody Customer customer){
         customers.add(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Customer successfully created");
+//        return ResponseEntity.status(HttpStatus.CREATED).body("Customer successfully created");
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{name}")
+                .buildAndExpand(customer.getName())
+                .toUri();
+
+        //return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(customer);
     }
 
 //    @RequestMapping(method = RequestMethod.PUT)
@@ -51,10 +64,10 @@ public class CustomerController {
                 c.setName(customer.getName());
                 c.setUsername(customer.getUsername());
                 c.setPassword(customer.getPassword());
-                return ResponseEntity.ok("Customer successfully updated: " + c.getName());
+                return ResponseEntity.noContent().build();
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found" + customer.getName());
+        return ResponseEntity.notFound().build();
     }
 
 
@@ -64,10 +77,10 @@ public class CustomerController {
         for (Customer c: customers){
             if (c.getId() == id ){
                 customers.remove(c);
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Customer successfully deleted: "+ id);
+                return ResponseEntity.noContent().build();
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found: "+ id);
+        return ResponseEntity.notFound().build();
     }
 
 //    @RequestMapping(method = RequestMethod.PATCH)
