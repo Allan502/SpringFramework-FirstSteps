@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Asus Vivobook 15",
+    "price": 330.0,
+    "stock": 300
+  },
+  {
+    "id": 2,
+    "name": "Asus Tuff",
+    "price": 1100.0,
+    "stock": 50
+  },
+  {
+    "id": 3,
+    "name": "Acer Nitro V",
+    "price": 850.0,
+    "stock": 100
+  },
+  {
+    "id": 4,
+    "name": "Dell Inspiron 3420",
+    "price": 50,
+    "stock": 1
+  },
+  {
+    "id": 4,
+    "name": "Dell Inspiron 3550",
+    "price": 400.0,
+    "stock": 500
+  },
+  {
+    "id": 4,
+    "name": "MSI katana",
+    "price": 560.0,
+    "stock": 100
+  }
+]
