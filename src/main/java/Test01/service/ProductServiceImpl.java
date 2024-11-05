@@ -1,6 +1,7 @@
 package Test01.service;
 
 import Test01.domain.Product;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service("listResourceService")
+@ConditionalOnProperty(name = "service.products", havingValue = "list")
 public class ProductServiceImpl implements ProductService{
 
     List<Product> products = new ArrayList<>(Arrays.asList(

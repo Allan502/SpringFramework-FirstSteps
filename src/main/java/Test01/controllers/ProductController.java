@@ -17,7 +17,6 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    @Qualifier("listResourceService")
     private ProductService productService;
 
     @GetMapping
