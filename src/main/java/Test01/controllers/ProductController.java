@@ -4,6 +4,7 @@ import Test01.domain.Product;
 import Test01.service.ProductService;
 import Test01.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
+    @Qualifier("listResourceService")
     private ProductService productService;
 
     @GetMapping
