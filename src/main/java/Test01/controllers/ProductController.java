@@ -3,6 +3,7 @@ package Test01.controllers;
 import Test01.domain.Product;
 import Test01.service.ProductService;
 import Test01.service.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    ProductService productService = new ProductServiceImpl();
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
     public ResponseEntity<?> getProducts(){
